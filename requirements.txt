@@ -1,0 +1,4 @@
+tornado
+structlog
+uiautomator2
+requests
