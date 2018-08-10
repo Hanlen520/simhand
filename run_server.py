@@ -23,8 +23,10 @@ def ping(delay):
 
 
 if __name__ == "__main__":
+    # stable check
     logger.info('STARTING ...')
     threading.Thread(target=ping, args=(2,)).start()
+
     application = Application(TORNADO_ROUTER, **cf.TORNADO_SETTING)
     application.listen(cf.TORNADO_PORT)
     IOLoop.instance().start()
