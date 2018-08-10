@@ -7,7 +7,7 @@
 - 操作截图
 - 操作UI自动化框架
 """
-from simhand.config import logger
+from simhand.logger import logger
 from simhand.u2_wrapper import U2Wrapper
 import subprocess
 

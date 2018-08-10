@@ -1,6 +1,6 @@
 """ handler for router """
 from tornado.web import RequestHandler
-from simhand.config import logger
+from simhand.logger import logger
 from simhand import forward
 import json
 
@@ -20,7 +20,7 @@ class BaseHandler(RequestHandler):
 
     def end_with_json(self, code, data=None, message=None):
         """ 规范服务器返回 """
-        request_url = self.request.url
+        request_url = self.request.uri
         result_dict = {
             'code': code,
             'data': data or {},
@@ -33,10 +33,10 @@ class BaseHandler(RequestHandler):
 class IndexHandler(BaseHandler):
     """ default """
     def get(self):
-        self.end_with_json(RESULT_OK, message='using GET, Hello From PC :)')
+        self.end_with_json(RESULT_OK, message='SIMHAND ALIVE :)')
 
     def post(self):
-        self.end_with_json(RESULT_OK, message='using POST, Hello From PC :)')
+        self.end_with_json(RESULT_OK, message='SIMHAND ALIVE :)')
 
 
 class ScreenShotHandler(BaseHandler):

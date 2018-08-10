@@ -7,7 +7,7 @@ import subprocess
 import time
 from requests.exceptions import ConnectionError
 from urllib3.exceptions import ProtocolError
-from simhand.config import logger
+from simhand.logger import logger
 
 
 class U2Wrapper(object):
