@@ -2,3 +2,4 @@ tornado
 structlog
 uiautomator2
 requests
+python-json-logger

@@ -6,9 +6,11 @@
 现有功能
 - 操作截图
 - 操作UI自动化框架
+- 操作设备
 """
 from simhand.logger import logger
 from simhand.u2_wrapper import U2Wrapper
+from simhand.aqube_wrapper import AQubeWrapper
 import subprocess
 
 
@@ -41,3 +43,15 @@ def ui(device_id, action_name, action_args):
     if not hasattr(u2_object, action_name):
         return 'no action called {}'.format(action_name)
     return getattr(u2_object, action_name)(action_args)
+
+
+def aqube(action_name, action_args):
+    """
+    操作设备
+
+    :param action_name: 方法名称，例如install
+    :param action_args: 方法参数，dict，与aqube本身的参数保持一致即可
+    :return:
+    """
+    action_func = getattr(AQubeWrapper.aqube_module, action_name)
+    return action_func(**action_args)

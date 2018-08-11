@@ -9,8 +9,6 @@ ROOT_PATH = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 PROJECT_PATH = os.path.join(ROOT_PATH, 'simhand')
 # AQUBE_CORE 项目目录
 AQUBE_PATH = os.path.join(ROOT_PATH, 'AQube_Core')
-# AQUBE_CORE 入口文件
-AQUBE_RUN = os.path.join(AQUBE_PATH, 'run.py')
 # AQUBE_CORE URL
 AQUBE_URL = 'https://github.com/williamfzc/AQube_Core.git'
 

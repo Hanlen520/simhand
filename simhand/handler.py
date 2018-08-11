@@ -69,3 +69,16 @@ class UIAutoHandler(BaseHandler):
 
     def post(self):
         self.end_with_json(RESULT_ERROR, message='Not Implemented Yet')
+
+
+class AQubeHandler(BaseHandler):
+    def get(self):
+        arg_dict = self.request.arguments
+        logger.info('GET AQUBE', args=arg_dict)
+        action_name = arg_dict['actionName'][0].decode()
+        action_args = json.loads(arg_dict['actionArgs'][0].decode())
+        aqube_result = forward.aqube(action_name, action_args)
+        self.end_with_json(RESULT_OK, message=aqube_result)
+
+    def post(self):
+        self.end_with_json(RESULT_ERROR, message='Not Implemented Yet')
