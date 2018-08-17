@@ -11,6 +11,8 @@ PROJECT_PATH = os.path.join(ROOT_PATH, 'simhand')
 AQUBE_PATH = os.path.join(ROOT_PATH, 'AQube_Core')
 # AQUBE_CORE URL
 AQUBE_URL = 'https://github.com/williamfzc/AQube_Core.git'
+# pysubmodule json
+PYSUBMODULE_JSON = os.path.join(ROOT_PATH, 'pysub.json')
 
 
 # TORNADO 配置

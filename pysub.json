@@ -1,0 +1,7 @@
+{
+  "AQube_Core": {
+    "url": "https://github.com/williamfzc/AQube_Core.git",
+    "path": ".",
+    "desc": "a flexible tool to init your android env"
+  }
+}

@@ -1,25 +1,14 @@
 import importlib
-import subprocess
-import os
-from simhand.config import AQUBE_PATH, AQUBE_URL
+import pysubmodule
+from simhand.config import PYSUBMODULE_JSON
 from simhand.logger import logger
 
 
-def get_aqube():
-    if os.path.exists(AQUBE_PATH):
-        old_cwd = os.getcwd()
-        os.chdir(AQUBE_PATH)
-        subprocess.run(['git', 'pull', '--rebase'])
-        os.chdir(old_cwd)
-    else:
-        subprocess.run(['git', 'clone', AQUBE_URL])
+pysubmodule.sync(PYSUBMODULE_JSON)
 
 
 def load_aqube():
     return importlib.import_module('AQube_Core.AQube_Core')
-
-
-get_aqube()
 
 
 class AQubeWrapper(object):
