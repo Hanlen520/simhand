@@ -2,11 +2,18 @@
 from tornado.web import RequestHandler
 from simhand.logger import logger
 from simhand import forward
+from simhand.device import DEVICE_MAP
 import json
 
 # STATUS
 RESULT_OK = 1000
 RESULT_ERROR = 1001
+
+
+def get_real_device_id(device_id):
+    if device_id in DEVICE_MAP:
+        return DEVICE_MAP[device_id]
+    return device_id
 
 
 class BaseHandler(RequestHandler):
@@ -45,7 +52,7 @@ class ScreenShotHandler(BaseHandler):
         arg_dict = self.request.arguments
         logger.info('GET SCREENSHOT', args=arg_dict)
         pic_name = arg_dict['name'][0].decode()
-        device_id = arg_dict['deviceId'][0].decode()
+        device_id = get_real_device_id(arg_dict['deviceId'][0].decode())
         # 正式截图
         shot_result = forward.screen_shot(device_id, pic_name)
         # 返回截图结果
@@ -62,7 +69,7 @@ class UIAutoHandler(BaseHandler):
         logger.info('GET UIAUTOACTION', args=arg_dict)
         action_name = arg_dict['actionName'][0].decode()
         action_args = json.loads(arg_dict['actionArgs'][0].decode())
-        device_id = arg_dict['deviceId'][0].decode()
+        device_id = get_real_device_id(arg_dict['deviceId'][0].decode())
         # ui操作
         ui_result = forward.ui(device_id, action_name, action_args)
         self.end_with_json(RESULT_OK, message=ui_result)
@@ -75,9 +82,10 @@ class AQubeHandler(BaseHandler):
     def get(self):
         arg_dict = self.request.arguments
         logger.info('GET AQUBE', args=arg_dict)
+        device_id = get_real_device_id(arg_dict['deviceId'][0].decode())
         action_name = arg_dict['actionName'][0].decode()
         action_args = json.loads(arg_dict['actionArgs'][0].decode())
-        aqube_result = forward.aqube(action_name, action_args)
+        aqube_result = forward.aqube(device_id, action_name, action_args)
         self.end_with_json(RESULT_OK, message=aqube_result)
 
     def post(self):

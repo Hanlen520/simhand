@@ -32,10 +32,11 @@ def ui_action(action_name, action_args, device_id):
     )
 
 
-def apply_aqube_action(action_name, action_args):
+def apply_aqube_action(device_id, action_name, action_args):
     requests.get(
         url=PC_IP + AQUBE_API,
         params={
+            'deviceId': device_id,
             'actionName': action_name,
             'actionArgs': action_args,
         }
@@ -43,18 +44,18 @@ def apply_aqube_action(action_name, action_args):
 
 
 if __name__ == '__main__':
-    # ui_action(
-    #     action_name='click_widget_by_text',
-    #     action_args=json.dumps({
-    #         'widgetText': '微信',
-    #     }),
-    #     device_id='9c12aa96',
-    # )
-
-    apply_aqube_action(
-        action_name='setting',
+    ui_action(
+        action_name='click_widget_by_text',
         action_args=json.dumps({
-            'device': '9c12aa96',
-            'action': 'airplane_on',
+            'widgetText': 'WeChat',
         }),
+        device_id='ae25fc9138f0bf56',
     )
+
+    # apply_aqube_action(
+    #     device_id='ae25fc9138f0bf56',
+    #     action_name='setting',
+    #     action_args=json.dumps({
+    #         'action': 'airplane_on',
+    #     }),
+    # )

@@ -45,13 +45,14 @@ def ui(device_id, action_name, action_args):
     return getattr(u2_object, action_name)(action_args)
 
 
-def aqube(action_name, action_args):
+def aqube(device_id, action_name, action_args):
     """
     操作设备
 
+    :param device_id: 设备id
     :param action_name: 方法名称，例如install
     :param action_args: 方法参数，dict，与aqube本身的参数保持一致即可
     :return:
     """
     action_func = getattr(AQubeWrapper.aqube_module, action_name)
-    return action_func(**action_args)
+    return action_func(device_id, **action_args)
