@@ -8,7 +8,7 @@ pysubmodule.sync(PYSUBMODULE_JSON)
 
 
 def load_aqube():
-    return importlib.import_module('AQube_Core.AQube_Core')
+    return importlib.import_module('AQube_Core')
 
 
 class AQubeWrapper(object):
